@@ -5,104 +5,322 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Artifact Showcase</title>
   <style>
+    /* General Styles */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f4f9;
+      background-color: #f9f9f9;
       color: #333;
     }
 
     header {
-      background-color: #007BFF;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #034082;
       color: white;
+    }
+
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    header nav a {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: white;
+      font-size: 1rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh; /* Full screen height */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
       padding: 1rem;
+      overflow: hidden;
+    }
+
+    .hero img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1; /* Place the image behind the text */
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin: 0;
       text-align: center;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
+    .hero p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* Introduction Section */
+    .intro {
+      text-align: center;
       padding: 2rem;
     }
 
-    .intro {
-      text-align: center;
-      margin-bottom: 2rem;
+    .intro h2 {
+      margin-bottom: 1rem;
     }
 
-    .artifacts {
+    .intro p {
+    max-width: 800px; /* Adjust the width for a larger fit */
+    margin: 1rem auto; /* Adds top and bottom margin and centers horizontally */
+    text-align: justify center; /* Aligns the text evenly on both sides */
+}
+
+
+    /* Items Section */
+    .items {
+      padding: 2rem;
+    }
+
+    .item {
       display: flex;
       flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-    }
-
-    .artifact {
+      margin-bottom: 1.5rem; /* Adjusted spacing between items */
       background: white;
       border: 1px solid #ddd;
       border-radius: 8px;
+      padding: 1rem;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      text-align: center;
-      width: 300px;
     }
 
-    .artifact img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
+    .item img.main-image {
+      flex: 1 1 40%;
+      max-width: 40%;
+      border-radius: 8px;
+      margin-right: 1rem;
     }
 
-    .artifact h3 {
-      margin: 1rem 0 0.5rem;
-      font-size: 1.2rem;
+    .item.align-right {
+      flex-direction: row-reverse; /* Reverse the layout to align the image to the right */
     }
 
-    .artifact p {
-      padding: 0 1rem 1rem;
-      font-size: 0.9rem;
+    .item.align-right img.main-image {
+      margin-right: 0;
+      margin-left: 1rem; /* Add spacing on the left for right-aligned image */
     }
 
+    .item .content {
+      flex: 1 1 55%;
+    }
+
+    .item .content h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
+
+    .item .content p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .item .thumbnails {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .item .thumbnails img {
+  width: 100%;
+  max-width: 200px; /* Increased size to 200px */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 4px; /* Keep the rounded corners */
+  object-fit: cover;
+  margin: 0.5rem; /* Add some spacing around the images */
+  transition: transform 0.3s; /* Smooth zoom effect on hover */
+}
+
+.item .thumbnails img:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+
+
+    /* Footer */
     footer {
-      background-color: #007BFF;
+      background-color: #034082;
       color: white;
       text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
+      padding: 3rem 1rem; /* Increased padding for a full-screen footer look */
+      margin-top: 0; /* Remove default margin */
+      width: 100%; /* Ensure full-screen width */
+      position: relative; /* Ensure it spans the entire width */
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .item {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .item img.main-image {
+        max-width: 100%;
+        margin: 0 auto 1rem;
+      }
+
+      .item .content {
+        margin-bottom: 1rem;
+      }
+
+      .item .thumbnails {
+        justify-content: center;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
-    <h1>Artifact Showcase</h1>
+    <div class="logo">Timeless Treasures</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
   </header>
 
-  <div class="container">
-    <section class="intro">
-      <h2>Explore Our Featured Artifacts</h2>
-      <p>Discover three fascinating artifacts from our collection. Each piece tells a unique story and showcases remarkable craftsmanship.</p>
-    </section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="header image-Camera.png" alt="Header Image"> <!-- Add your header image here -->
+    <h1>Welcome to Artifact Showcase</h1>
+    <p>Discover the history behind stunning artifacts.</p>
+  </section>
 
-    <section class="artifacts">
-      <div class="artifact">
-        <img src="artifact1.jpg" alt="Artifact 1">
-        <h3>Artifact 1</h3>
-        <p>A beautiful piece from the ancient world, reflecting the artistry of a bygone era.</p>
-      </div>
-      <div class="artifact">
-        <img src="artifact2.jpg" alt="Artifact 2">
-        <h3>Artifact 2</h3>
-        <p>This rare artifact symbolizes the cultural heritage of its time.</p>
-      </div>
-      <div class="artifact">
-        <img src="artifact3.jpg" alt="Artifact 3">
-        <h3>Artifact 3</h3>
-        <p>An iconic relic that bridges the gap between history and modernity.</p>
-      </div>
-    </section>
-  </div>
+  <!-- Introduction Section -->
+  <section class="intro">
+    <h2>A Legacy of Blue and White</h2>
+    <p>
+      For over 1,500 years, Jingdezhen has been celebrated as the "Porcelain Capital" of China, renowned for its exquisite blue and white porcelain. This artistry peaked during the Kangxi period (1662–1722) of the Qing dynasty, blending intricate cobalt blue designs with innovative craftsmanship. These porcelains became symbols of luxury, sparking "Chinamania" in Europe and influencing Western decorative arts.
 
+      The Freer Gallery of Art honors this legacy by preserving remarkable blue and white ceramics that reflect the cultural exchange and artistic mastery of the era. Through 3D digitization, we explore these timeless artifacts, showcasing their beauty, history, and enduring significance.
+      </p>
+  </section>
+
+  <!-- Items Section -->
+  <section class="items">
+    <!-- Item 1 -->
+    <div class="item">
+      <img src="vase 1-1.png" alt="Vase Main Image" class="main-image">
+      <div class="content">
+        <h3>bottle-Shaped Vase: A Timeless Masterpiece</h3>
+        <p><b>Description:</b>
+            This elegant bottle-shaped vase, crafted during the Kangxi reign (1662–1722) of the Qing dynasty, epitomizes the artistry of Jingdezhen porcelain. Its pear-shaped body gracefully tapers into a long neck, adorned with intricate cobalt blue designs painted under a clear, colorless glaze. The body features a harmonious depiction of rock formations and flowering plants surrounded by delicate foliate floral scrolls, while the neck is embellished with flowering branches framed by hatched borders. A touch of brown glaze on the lip adds a refined finish.
+            </p>
+            <p><b>Provenance:</b>
+                This remarkable piece has passed through the hands of notable collectors, including:
+                <p><b>• George Aristides Eumorfopoulos (1863–1939), London.</b></p>
+                <p><b>• Myron S. Falk, Jr. (1906–1992) and Pauline Baerwald Falk (1910–2000), New York.</b></p>
+                It was generously gifted to the Freer Gallery of Art by Mr. and Mrs. Falk in 1982, ensuring its preservation and public appreciation.
+               
+                </p>
+                <p><b>Historical Context:</b>
+                    Originating from Jingdezhen, Jiangxi Province, this vase is a quintessential example of the region's world-renowned porcelain craftsmanship. During the Qing dynasty, the use of cobalt pigment under a clear glaze became a hallmark of Jingdezhen ware, celebrated for its refinement and artistic depth. The tranquil mountain and lake motif reflects the cultural emphasis on harmony and the natural world in Chinese art.
+                    </p>
+                    <p><b>Details:</b>
+                        <p><b>• Medium:</b> Porcelain with cobalt pigment under a clear glaze.</p>
+                        <P><b>• Dimensions:</b> Height 18.8 cm (7 3/8 in), Diameter 10 cm (3 15/16 in).</P>
+                     
+      </div>
+      <div class="thumbnails">
+        <img src="vase 1-1.png" alt="Vase Image 1">
+        <img src="vase1-2-Camera.png" alt="Vase Image 2">
+        <img src="vase1-3-Camera.png" alt="Vase Image 3">
+      </div>
+    </div>
+
+    <!-- Item 2 (Aligned Right) -->
+    <div class="item align-right">
+      <img src="vase2-1.png" alt="Vase Main Image" class="main-image">
+      <div class="content">
+        <h3>Cylindrical Vase: A Timeless Scene in Blue and White</h3>
+        <p><b>Description:</b>
+            This tall, cylindrical vase, crafted circa 1700 during the Qing dynasty, embodies the elegance and mastery of Jingdezhen porcelain. Its narrow neck and flared rim accentuate its graceful silhouette, while a serene decorative scene of mountains and lakes, painted in underglaze cobalt blue, adorns its surface. The vase's gray-white porcelain body and clear glaze enhance the visual depth and detail of its intricate artwork
+            </p>
+            <p><b>Provenance:</b>
+                This exquisite piece was previously owned by <b>Mrs. Julia Curtis,</b> who generously gifted it to the Freer Gallery of Art in 1991. It has since become an integral part of the gallery's esteemed collection of Chinese art.
+              
+                </p>
+                <p><b>Historical Context:</b>
+                    Originating in Jingdezhen, Jiangxi Province, China, this vase reflects the Qing dynasty’s emphasis on innovation and refinement in porcelain art. The cobalt blue decoration, a hallmark of the Kangxi period, highlights the mastery of underglaze techniques that Jingdezhen artisans perfected over centuries.
+                    </p>
+                    <p><b>Details:</b>
+                        <p><b>• Medium:</b> Porcelain with cobalt pigment under a clear, colorless glaze.</p>
+                        <P><b>• Dimensions:</b> Height 26.3 cm (10 3/8 in), Diameter 11.7 cm (4 5/8 in).</P>
+                        <P><b>• Date: </b> Circa 1700.</P>
+                     
+                     
+      </div>
+      <div class="thumbnails">
+        <img src="vase2-1.png" alt="Vase Image 1">
+        <img src="vase2-2-Camera.png" alt="Vase Image 2">
+        <img src="vase2-3-Camera.png" alt="Vase Image 3">
+      </div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="item">
+      <img src="vase3-1.png" alt="Vase Main Image" class="main-image">
+      <div class="content">
+        <h3>Beaker-Shaped Vase: A Masterpiece of the Kangxi Era</h3>
+        <p><b>Description:</b>
+            This elegant beaker-shaped vase, part of a five-piece garniture (F1980.190-194), exemplifies the refinement of Jingdezhen porcelain during the Kangxi reign (1662–1722) of the Qing dynasty. Crafted from white porcelain and adorned with a clear feldspathic glaze, the vase features intricate scenes painted in underglaze cobalt blue. The flaring neck depicts a court scene similar to those found on companion baluster vases, while the middle and lower sections showcase garden settings with court ladies. These sections are beautifully divided by herringbone borders. The vase is accompanied by a wood stand, enhancing its presentation.</p>
+
+            <p><b>Provenance:</b>
+                This vase boasts a distinguished provenance, tracing its journey through notable collectors and owners, including:
+                <p><b>•	Duveen Brothers, New York (to 1916).</b></p>
+                <p><b>•	Mrs. B. F. Jones Jr., Pittsburgh and Sewickley Heights, Pennsylvania (1916–1941).</b></p>
+                <p><b>•	Myron S. Falk Sr. and later Myron S. Falk Jr. and his sisters, Mrs. Mildred F. Loew and Mrs. Eleanor F. Lenzner (1941–1980).</b></p>
+                It was generously donated to the Freer Gallery of Art in 1980 by Myron S. Falk Jr. and his sisters, ensuring its preservation for future generations.
+                </p>
+
+                <p><b>Historical Context:</b>
+                    Originating from Jingdezhen, Jiangxi Province, this vase reflects the artistry and technical mastery of one of the most celebrated porcelain production centers in the world. During the Kangxi reign, cobalt blue underglaze decoration reached new heights of sophistication, combining detailed narrative scenes with delicate design elements. This vase’s courtly and natural motifs evoke the grandeur and refinement of the Qing dynasty.
+                    </p>
+                    <p><b>Details:</b>
+                        <p><b>• Medium:</b> Porcelain with cobalt pigment under a clear, colorless glaze.</p>
+                        <P><b>• Dimensions:</b> Height 43 cm (16 15/16 in), Diameter 20.6 cm (8 1/8 in).</P>
+                        <P><b>• Date: </b> 1662–1722 </P>
+                     
+
+      </div>
+      <div class="thumbnails">
+        <img src="vase3-1.png" alt="Vase Image 1">
+        <img src="vase3-2-Camera.png" alt="Vase Image 2">
+        <img src="vase3-3-Camera.png" alt="Vase Image 3">
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <p>© 2024 Artifact Showcase. All rights reserved.</p>
   </footer>
